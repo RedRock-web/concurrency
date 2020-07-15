@@ -5,9 +5,12 @@ package main
 
 import (
 	"concurrency/model"
+	"concurrency/router"
+	"concurrency/service"
 )
 
 func main() {
 	model.InitDB()
-
+	service.InitService()
+	router.InitRouter()
 }

@@ -10,6 +10,7 @@ import (
 // Goods 表示商品
 type Goods struct {
 	gorm.Model
+	Gid   int
 	Name  string
 	Price int
 	Num   int
@@ -20,14 +21,14 @@ func (goods Goods) AddGoods() error {
 	return DB.Create(goods).Error
 }
 
-// FindGoodsById 通过商品 id 查找商品
-func FindGoodsById(id uint) (goods Goods, err error) {
+// SelectGoodsById 通过商品 id 查找商品
+func SelectGoodsById(id uint) (goods Goods, err error) {
 	err = DB.Table("goods").Where("id = ?", id).First(&goods).Error
 	return goods, err
 }
 
-// FindAllGoods 查找所有商品
-func FindAllGoods() (goods []Goods, err error) {
+// SelectAllGoods 查找所有商品
+func SelectAllGoods() (goods []Goods, err error) {
 	err = DB.Table("goods").Find(&goods).Error
 	return goods, err
 }

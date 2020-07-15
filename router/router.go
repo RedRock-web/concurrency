@@ -5,6 +5,8 @@ package router
 
 import (
 	"github.com/gin-gonic/gin"
+
+	"concurrency/controller"
 )
 
 // InitRouter 初始化 router
@@ -16,6 +18,15 @@ func InitRouter() {
 
 // SetRouter 设置 router
 func SetRouter(r *gin.Engine) {
-	r.GET("/getGoods", controller.SelectGoods)
-	r.POST("/order", controller.MakeOrder)
+	goods := r.Group("/goods")
+	{
+		goods.GET("/get_all", controller.SelectAllGoods)
+		goods.GET("/get", controller.SelectGoodsByGid)
+		goods.POST("add", controller.AddGoods)
+	}
+
+	order := r.Group("/order")
+	{
+		order.POST("/order", controller.MakeOrder)
+	}
 }
