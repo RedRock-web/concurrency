@@ -17,7 +17,7 @@ func InitDB() {
 	db, err := gorm.Open("mysql", "mysql", "root:mima@tcp(127.0.0."+
 		"1:3306)/concurrency?parseTime=true&charset=utf8&loc=Local")
 	if err != nil {
-		log.Panicf("Panic while connecting the gorm. Error: %s", err)
+		log.Fatalf("Panic while connecting the gorm. Error: %s", err)
 	}
 
 	DB = db

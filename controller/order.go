@@ -18,6 +18,7 @@ func MakeOrder(c *gin.Context) {
 		return
 	}
 
+	// 阻塞等待获取订单情况
 	service.OrderChan <- u
 
 	router.Ok(c)
